@@ -10,7 +10,7 @@ The styling of the page relies on Tailwind, which is similar to Bootstrap utilit
 
 ### Reading Time
 
-While statamic does come with a [read_time](https://statamic.dev/modifiers/read_time) modifier, it works using words per minute and does not consider for Chinese. The following is the only PHP code written for the project.
+While statamic does come with a [read_time](https://statamic.dev/modifiers/read_time) modifier, it works using words per minute and does not consider for Chinese. The following is one of the only few PHP code written for the project.
 
 ```php
 // app/Modifiers/CustomReadTime.php
