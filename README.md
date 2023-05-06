@@ -1,40 +1,61 @@
-<p align="center"><img src="https://statamic.com/assets/branding/Statamic-Logo+Wordmark-Rad.svg" width="400" alt="Statamic Logo" /></p>
+# Zao Bao Clone
 
-## About Statamic 3
+This repository recreates a simplified version of Zao Bao using Statamic, which is based on Laravel. Statamic prefers flat repositories and as such this project can be cloned and the articles will be populated.
 
-Statamic 3 is the flat-first, Laravel + Git powered CMS designed for building beautiful, easy to manage websites.
+### Reasoning
 
-> **Note:** This repository contains the code for the Statamic application. To contribute to the core package, visit the [Statamic core package repository][cms-repo].
+The project is created using Statamic, a dynamic CMS based on Laravel. The task requires me to use PHP without specifying how the SPH team expects the project to be approached. There is no use reinventing the wheel when the team behind Statamic has done all the ground work. While I contemplated building a tiny CMS in raw PHP, I ultimately decided against it. The powerful CMS allowed me to build the project only focusing on design and the custom modifier that calculates reading time.
 
+The styling of the page relies on Tailwind, which is similar to Bootstrap utility classes, for rapid prototyping. 
 
-## Learning Statamic
+### Reading Time
 
-Statamic 3 has extensive [documentation][docs]. We dedicate a significant amount of time and energy every day to improving them, so if something is unclear, feel free to open issues for anything you find confusing or incomplete. We are happy to consider anything you feel will make the docs and CMS better.
+While statamic does come with a [read_time](https://statamic.dev/modifiers/read_time) modifier, it works using words per minute and does not consider for Chinese. The following is the only PHP code written for the project.
 
-## Support
+```php
+// app/Modifiers/CustomReadTime.php
+public function index($value, $params, $context)
+{
+    // if params are passed, use them as the words per minute
+    if (count($params)) $wordsPerMinute = $params[0];
+    else $wordsPerMinute = 200;
 
-We provide official developer support on [Statamic 3 Pro](https://statamic.com/pricing) projects. Community-driven support is available on the [forum](https://statamic.com/forum) and in [Discord][discord].
+    $words = strlen(strip_tags($value));
+    $time = $words / $wordsPerMinute;
 
+    if ($time < 1) return '少于1分钟'; // if it is less than a minute, return "少于1分钟"
+    return round($time) . '分钟'; // else return round($time) . '分钟';
+}
+```
 
-## Contributing
+### How to test
 
-Thank you for considering contributing to Statamic! We simply ask that you review the [contribution guide][contribution] before you open issues or send pull requests.
+This assumes you have already installed PHP, Composer and Node.
 
+```bash
+# Install PHP Dependencies
+composer i 
 
-## Code of Conduct
+# Start the server
+php artisan serve
+```
 
-In order to ensure that the Statamic community is welcoming to all and generally a rad place to belong, please review and abide by the [Code of Conduct](https://github.com/statamic/cms/wiki/Code-of-Conduct).
+## Web View
 
+### Main Page
 
-## Important Links
+![image](https://user-images.githubusercontent.com/38975808/236646354-38020337-5633-4fcd-8975-f2acae231c00.png)
 
-- [Statamic Main Site](https://statamic.com)
-- [Statamic 3 Documentation][docs]
-- [Statamic 3 Core Package Repo][cms-repo]
-- [Statamic 3 Migrator](https://github.com/statamic/migrator)
-- [Statamic Discord][discord]
+### Article Page
 
-[docs]: https://statamic.dev/
-[discord]: https://statamic.com/discord
-[contribution]: https://github.com/statamic/cms/blob/master/CONTRIBUTING.md
-[cms-repo]: https://github.com/statamic/cms
+https://user-images.githubusercontent.com/38975808/236647493-f5168074-4c90-461a-9707-528ae33ac711.mov
+
+## Mobile View
+
+### Main Page
+
+<img width="428" alt="image" src="https://user-images.githubusercontent.com/38975808/236647865-9b16000f-c573-46aa-9b86-34271f0847ca.png">
+
+### Article Page
+
+<img width="428" alt="image" src="https://user-images.githubusercontent.com/38975808/236647858-82354b8b-4752-46e4-8843-38f037d9f018.png">
