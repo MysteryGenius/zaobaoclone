@@ -1,0 +1,14 @@
+<!-- resources/views/articles/_listing.antlers.html -->
+
+<section class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-3">
+  {{ slot }}
+  {{ collection:articles :limit="limit" }}
+  <a href="{{ url }}" class="items-center justify-between text-gray-700 hover:text-gray-900 hover:bg-gray-100 flex md:flex-col">
+    <img src="{{ hero_image }}" class="md:w-full w-2/3 object-cover" alt="{{ title }}">
+    <div class="w-full h-full flex flex-col justify-between md:py-2 py-0 md:pl-0 pl-4">
+      <p class="text-base">{{ title }}</p>
+      <p class="text-gray-400 text-sm">{{ date | iso_format('ll') }} · {{ content | custom_read_time(config:app:characters_per_minute) }}</p>
+    </div>
+  </a>
+  {{ /collection:articles }}
+</section>

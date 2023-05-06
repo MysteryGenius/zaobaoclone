@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ title }}</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+  </style>
+</head>
+
+<body class="text-lg bg-slate-100 px-4 lg:px-0">
+  <nav class="lg:max-w-4xl mx-auto mt-6">
+    <a href="{{ homepage }}" class="text-left text-2xl font-bold my-6">联合假报</a>
+  </nav>
+  <div class="container lg:max-w-4xl max-w-max mx-auto py-8">
+    {{ template_content }}
+  </div>
+</body>
+</html>

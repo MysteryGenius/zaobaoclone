@@ -1,0 +1,20 @@
+<!-- resources/views/articles/show.antlers.html -->
+
+<h1 class="text-3xl text-left text-gray-900 mt-6 py-6">{{ title }}</h1>
+<div class="text-left text-gray-400 mt-8 py-3 text-xs uppercase space-y-2">
+  <p>分类 / <span class="text-gray-100 bg-pink-400 rounded-full py-0.5 px-2">{{ category }}</span></p>
+  <p>文 / <span class="text-gray-600">{{ author:name }}</span></p>
+  <p>来自 / <span class="text-gray-600">早报数码</span></p>
+  <p class="flex space-x-2">
+    <span>发布 / {{ date | iso_format('ll') }}</span>
+    <span class="flex">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      {{ content | custom_read_time(config:app:characters_per_minute) }}
+    </span>
+  </p>
+</div>
+<article class="space-y-4 mt-8 text-sm text-gray-600 leading-loose">
+  {{ content }}
+</article>
