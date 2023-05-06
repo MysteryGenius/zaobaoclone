@@ -1,13 +1,6 @@
 @import "tailwindcss/base";
-
-@import "site";
-
 @import "tailwindcss/components";
-
 @import "tailwindcss/utilities";
 
-@layer base {
-  h4 {
-    @apply text-2xl font-bold text-gray-900;
-  }
-}
+@import "site.css";
+@import 'tags.css';

@@ -1,0 +1,21 @@
+@layer components {
+  .tags {
+    @apply flex rounded items-center flex-row flex-wrap;
+  }
+
+  .tag {
+    @apply bg-gray-100 px-2 py-0.5 rounded-full;
+    @apply text-xs;
+  }
+
+  /* Size Variants */
+  .tag.is-medium {
+    @apply px-3 py-2;
+    @apply text-sm;
+  }
+
+  .tag.is-large {
+    @apply px-4 py-3;
+    @apply text-base;
+  }
+}

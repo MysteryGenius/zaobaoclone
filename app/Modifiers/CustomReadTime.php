@@ -24,6 +24,6 @@ class CustomReadTime extends Modifier
         $time = $words / $wordsPerMinute;
 
         if ($time < 1) return '少于1分钟'; // if it is less than a minute, return "少于1分钟"
-        return ceil($time) . '分钟'; // else return ceil($time) . '分钟';
+        return round($time) . '分钟'; // else return round($time) . '分钟';
     }
 }

@@ -1,1 +1,7 @@
 /* This is all you. */
+
+@layer base {
+  h4 {
+    @apply text-xl font-bold;
+  }
+}
