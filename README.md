@@ -40,6 +40,10 @@ composer i
 php artisan serve
 ```
 
+## Examples
+
+The reading time might be slightly off as I have since ammended the code to round up instead of just taking the ceiling. This makes the reading time satisfy the example on the documentation
+
 ## Web View
 
 ### Main Page
