@@ -12,22 +12,6 @@ The styling of the page relies on Tailwind, which is similar to Bootstrap utilit
 
 While statamic does come with a [read_time](https://statamic.dev/modifiers/read_time) modifier, it works using words per minute and does not consider for Chinese. The following is one of the only few PHP code written for the project.
 
-```php
-// app/Modifiers/CustomReadTime.php
-public function index($value, $params, $context)
-{
-    // if params are passed, use them as the words per minute
-    if (count($params)) $wordsPerMinute = $params[0];
-    else $wordsPerMinute = 200;
-
-    $words = strlen(strip_tags($value));
-    $time = $words / $wordsPerMinute;
-
-    if ($time < 1) return '少于1分钟'; // if it is less than a minute, return "少于1分钟"
-    return round($time) . '分钟'; // else return round($time) . '分钟';
-}
-```
-
 ### How to test
 
 This assumes you have already installed PHP, Composer and Node.
