@@ -16,14 +16,23 @@ class CustomReadTime extends Modifier
      */
     public function index($value, $params, $context)
     {
-        // if params are passed, use them as the words per minute
-        if (count($params)) $wordsPerMinute = $params[0];
-        else $wordsPerMinute = 200;
+        // if params are passed, use them as the chars per minute
+        if (count($params)) $charsPerMinute = $params[0];
+        else $charsPerMinute = 200;
 
-        $words = strlen(strip_tags($value));
-        $time = $words / $wordsPerMinute;
+        $chars = strlen(trim(strip_tags($value)));
+        $mins = $chars / $charsPerMinute;
+        $remainderSeconds = round(($mins - floor($mins)) * 60);
 
-        if ($time < 1) return '少于1分钟'; // if it is less than a minute, return "少于1分钟"
-        return round($time) . '分钟'; // else return round($time) . '分钟';
+        $finalMins = floor($mins) + $this->roundSeconds($remainderSeconds);
+
+        if ($finalMins < 1) return '少于1分钟'; // if it is less than a minute, return "少于1分钟"
+        return round($finalMins) . '分钟'; // else return round($time) . '分钟';
+    }
+
+    private function roundSeconds($seconds)
+    {
+        if ($seconds < 30) return 0;
+        return 1;
     }
 }
