@@ -16,8 +16,8 @@ While statamic does come with a [read_time](https://statamic.dev/modifiers/read_
 public function index($value, $params, $context)
 {
     // if params are passed, use them as the chars per minute
+    $charsPerMinute = 200;
     if (count($params)) $charsPerMinute = $params[0];
-    else $charsPerMinute = 200;
 
     $chars = strlen(trim(strip_tags($value)));
     $mins = $chars / $charsPerMinute;
