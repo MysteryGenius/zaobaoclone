@@ -20,7 +20,7 @@ class CustomReadTime extends Modifier
         $charsPerMinute = 200;
         if (count($params)) $charsPerMinute = $params[0];
 
-        $chars = strlen(trim(strip_tags($value)));
+        $chars = mb_strlen(trim(strip_tags($value)));
         $mins = $chars / $charsPerMinute;
         $remainderSeconds = round(($mins - floor($mins)) * 60);
 
